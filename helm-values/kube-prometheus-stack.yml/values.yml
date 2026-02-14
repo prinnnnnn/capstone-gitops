@@ -14,8 +14,6 @@ grafana:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hosts:
-      - grafana.example.local
     paths:
       - /
     pathType: Prefix
