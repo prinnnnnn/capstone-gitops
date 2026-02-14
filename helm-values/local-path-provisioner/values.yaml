@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: rancher/local-path-provisioner
+  tag: v0.0.24
+
+storageClass:
+  create: true
+  name: local-path
+  defaultClass: true
+  reclaimPolicy: Delete
+  volumeBindingMode: WaitForFirstConsumer
+# storageClass:
+#   create: false
+#   name: ceph-block
+#   defaultClass: false
+
+nodePathMap:
+  - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
+    paths:
+      - /var/lib/local-path-provisioner
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

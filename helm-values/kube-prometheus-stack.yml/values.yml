@@ -1,0 +1,134 @@
+global:
+  rbac:
+    create: true
+
+grafana:
+  enabled: true
+
+  adminUser: admin
+  adminPassword: "ChangeMeStrongPassword123"
+
+  service:
+    type: ClusterIP
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.example.local
+    paths:
+      - /
+    pathType: Prefix
+
+    # TLS example (enable later)
+    # tls:
+    #   - secretName: grafana-tls
+    #     hosts:
+    #       - grafana.example.local
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  additionalDataSources: []
+
+  # Create read-only user
+  grafana.ini:
+    users:
+      allow_sign_up: false
+    auth.anonymous:
+      enabled: false
+
+  # Create additional user via provisioning
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers: []
+
+  sidecar:
+    dashboards:
+      enabled: true
+
+  extraConfigmapMounts:
+    - name: grafana-provisioning
+      mountPath: /etc/grafana/provisioning/users
+      configMap: grafana-users
+
+prometheus:
+  enabled: true
+
+  prometheusSpec:
+    replicas: 1
+    retention: 15d
+    retentionSize: 20GB
+
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 1
+        memory: 2Gi
+
+    nodeSelector:
+      kubernetes.io/hostname: large-node-name   # pin to big server
+
+    tolerations: []
+
+alertmanager:
+  enabled: true
+
+  alertmanagerSpec:
+    replicas: 1
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+kubeStateMetrics:
+  enabled: true
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+
+nodeExporter:
+  enabled: true
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+ 

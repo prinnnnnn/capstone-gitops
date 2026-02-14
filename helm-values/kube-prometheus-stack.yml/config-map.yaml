@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-users
+data:
+  users.yaml: |
+    apiVersion: 1
+    users:
+      - name: readonly
+        password: ReadOnlyPassword123
+        role: Viewer
