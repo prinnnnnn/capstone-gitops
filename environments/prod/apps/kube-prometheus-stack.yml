@@ -17,7 +17,7 @@ spec:
       - ApplyOutOfSyncOnly=true
   sources:
     - repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 16.8.3
+      targetRevision: 81.0.0
       chart: kube-prometheus-stack
       helm:
         valueFiles:
@@ -30,7 +30,3 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring 
-  
-  helm:
-    valueFiles:
-      - $values-source/values.yaml 
