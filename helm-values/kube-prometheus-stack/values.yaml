@@ -3,6 +3,8 @@ global:
     create: true
 
 grafana:
+  nodeSelector:
+    node-role: large-server
   enabled: true
 
   adminUser: admin
@@ -82,7 +84,7 @@ prometheus:
         memory: 2Gi
 
     nodeSelector:
-      kubernetes.io/hostname: large-node-name   # pin to big server
+      node-role: large-server
 
     tolerations: []
 
@@ -90,6 +92,8 @@ alertmanager:
   enabled: true
 
   alertmanagerSpec:
+    nodeSelector:
+      node-role: large-server
     replicas: 1
     storage:
       volumeClaimTemplate:
@@ -109,6 +113,8 @@ alertmanager:
       memory: 512Mi
 
 kubeStateMetrics:
+  nodeSelector:
+    node-role: large-server
   enabled: true
 
   resources:
@@ -120,6 +126,8 @@ kubeStateMetrics:
       memory: 256Mi
 
 nodeExporter:
+  nodeSelector:
+    node-role: large-server
   enabled: true
 
   resources:

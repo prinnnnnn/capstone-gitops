@@ -1,4 +1,6 @@
 controller:
+  nodeSelector:
+    node-role: large-server
   resources:
     requests:
       cpu: 100m

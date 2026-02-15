@@ -20,6 +20,8 @@ nodePathMap:
     paths:
       - /var/lib/local-path-provisioner
 
+node-role: large-server
+
 resources:
   requests:
     cpu: 50m
