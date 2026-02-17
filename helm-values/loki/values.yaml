@@ -1,0 +1,15 @@
+deploymentMode: SingleBinary
+
+loki:
+  auth_enabled: false
+
+singleBinary:
+  replicas: 1
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClassName: local-path
+
+nodeSelector:
+  node-role: large-server

@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: cert-manager
+    app.kubernetes.io/part-of: cert-management
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: v1.14.4
+      helm:
+        valueFiles:
+          - $values/helm-values/cert-manager/values.yaml
+    
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

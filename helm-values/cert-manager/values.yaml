@@ -1,0 +1,9 @@
+installCRDs: true
+
+nodeSelector:
+  node-role: large-server
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
