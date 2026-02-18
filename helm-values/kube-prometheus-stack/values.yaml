@@ -69,7 +69,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-path
+          storageClassName: standard
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
