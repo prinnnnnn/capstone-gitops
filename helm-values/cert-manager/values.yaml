@@ -1,7 +1,7 @@
 installCRDs: true
 
 nodeSelector:
-  node-role: large-server
+  node-role: control-plane
 
 resources:
   requests:

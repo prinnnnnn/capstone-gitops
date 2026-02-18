@@ -1,6 +1,6 @@
 controller:
   nodeSelector:
-    node-role: large-server
+    node-role: control-plane
   resources:
     requests:
       cpu: 100m

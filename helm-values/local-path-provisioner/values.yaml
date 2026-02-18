@@ -20,7 +20,7 @@ nodePathMap:
     paths:
       - /var/lib/local-path-provisioner
 
-node-role: large-server
+node-role: control-plane
 
 resources:
   requests:

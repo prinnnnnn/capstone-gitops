@@ -4,7 +4,7 @@ global:
 
 grafana:
   nodeSelector:
-    node-role: large-server
+    node-role: control-plane
   enabled: true
 
   adminUser: admin
@@ -84,7 +84,7 @@ prometheus:
         memory: 2Gi
 
     nodeSelector:
-      node-role: large-server
+      node-role: control-plane
 
     tolerations: []
 
@@ -93,7 +93,7 @@ alertmanager:
 
   alertmanagerSpec:
     nodeSelector:
-      node-role: large-server
+      node-role: control-plane
     replicas: 1
     storage:
       volumeClaimTemplate:
@@ -114,7 +114,7 @@ alertmanager:
 
 kubeStateMetrics:
   nodeSelector:
-    node-role: large-server
+    node-role: control-plane
   enabled: true
 
   resources:
@@ -127,7 +127,7 @@ kubeStateMetrics:
 
 nodeExporter:
   nodeSelector:
-    node-role: large-server
+    node-role: control-plane
   enabled: true
 
   resources:
