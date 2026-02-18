@@ -89,7 +89,7 @@ prometheus:
     tolerations: []
 
 alertmanager:
-  enabled: true
+  enabled: false
 
   alertmanagerSpec:
     nodeSelector:
