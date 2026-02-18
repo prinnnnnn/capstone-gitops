@@ -83,8 +83,8 @@ prometheus:
         cpu: 1
         memory: 2Gi
 
-    nodeSelector:
-      node-role: control-plane
+    # nodeSelector:
+    #   node-role: control-plane
 
     tolerations: []
 
