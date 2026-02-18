@@ -25,8 +25,7 @@ spec:
 
     - repoURL: https://github.com/prometheus-community/helm-charts.git
       targetRevision: 81.0.0
-      paths: 
-        - charts/kube-prometheus-stack/charts/crds/crds
+      path: charts/kube-prometheus-stack/charts/crds/crds
 
     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
       targetRevision: main
@@ -34,8 +33,7 @@ spec:
     
     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
       targetRevision: main
-      paths: 
-        - infrastructure/monitoring/config-map.yaml
+      path: infrastructure/monitoring/
 
   destination:
     server: https://kubernetes.default.svc
