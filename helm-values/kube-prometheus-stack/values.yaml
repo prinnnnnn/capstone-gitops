@@ -3,8 +3,8 @@ global:
     create: true
 
 grafana:
-  nodeSelector:
-    node-role: control-plane
+ # nodeSelector:
+  #  node-role: control-plane
   enabled: true
 
   adminUser: admin
