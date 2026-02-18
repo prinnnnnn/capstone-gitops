@@ -23,9 +23,19 @@ spec:
         valueFiles:
           - $values/helm-values/kube-prometheus-stack/values.yaml
 
+    - repoURL: https://github.com/prometheus-community/helm-charts.git
+      targetRevision: 81.0.0
+      paths: 
+        - charts/kube-prometheus-stack/charts/crds/crds
+
     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
       targetRevision: main
       ref: values
+    
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      paths: 
+        - infrastructure/monitoring/config-map.yaml
 
   destination:
     server: https://kubernetes.default.svc
