@@ -1,27 +1,27 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: local-path
-  namespace: argocd
-  labels:
-    app.kubernetes.io/name: local-path
-    app.kubernetes.io/part-of: storage
-spec:
-  project: default
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: local-path-storage
-  sources:
-    - repoURL: https://charts.rancher.io
-      chart: local-path-provisioner
-      targetRevision: 0.0.28
-      helm:
-        valueFiles:
-          - $values/helm-values/local-path-provisioner/values.yaml
-    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
-      targetRevision: main
-      ref: values
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: local-path
+#   namespace: argocd
+#   labels:
+#     app.kubernetes.io/name: local-path
+#     app.kubernetes.io/part-of: storage
+# spec:
+#   project: default
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: local-path-storage
+#   sources:
+#     - repoURL: https://charts.rancher.io
+#       chart: local-path-provisioner
+#       targetRevision: 0.0.28
+#       helm:
+#         valueFiles:
+#           - $values/helm-values/local-path-provisioner/values.yaml
+#     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+#       targetRevision: main
+#       ref: values
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
