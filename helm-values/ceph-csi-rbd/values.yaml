@@ -1,0 +1,36 @@
+---
+rbac:
+  create: true
+
+serviceAccounts:
+  nodeplugin:
+    create: true
+    name:
+  provisioner:
+    create: true
+    name:
+
+csiConfig:
+  - clusterID: "12e4ef0c-097b-11f1-963b-10ddb1d15aee"
+    monitors:
+      - "10.0.0.30:6789"
+      - "10.0.0.122:6789"
+      - "10.0.0.146:6789"
+    rbd:
+      netNamespaceFilePath: "{{ .kubeletDir }}/plugins/{{ .driverName }}/net"
+      mirrorDaemonCount: 1
+    readAffinity:
+      enabled: true
+      crushLocationLabels:
+        - topology.kubernetes.io/region
+        - topology.kubernetes.io/zone
+
+csiMapping: []
+
+encryptionKMSConfig: {}
+
+commonLabels: {}
+
+logLevel: 5
+sidecarLogLevel: 1
+logSlowOperationInterval: 30s
