@@ -37,3 +37,9 @@ logSlowOperationInterval: 30s
 
 provisioner:
   replicaCount: 2
+
+readAffinity:
+  enabled: true
+  crushLocationLabels:
+    - topology.kubernetes.io/region
+    - topology.kubernetes.io/zone
