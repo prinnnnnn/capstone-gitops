@@ -34,3 +34,6 @@ commonLabels: {}
 logLevel: 5
 sidecarLogLevel: 1
 logSlowOperationInterval: 30s
+
+provisioner:
+  replicaCount: 2

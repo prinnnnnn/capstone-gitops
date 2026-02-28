@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: metallb
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+
+  sources:
+
+    - repoURL: https://metallb.github.io/metallb
+      chart: metallb
+      targetRevision: 0.14.6
+      helm:
+        valueFiles:
+          - $values/helm-values/metallb/values.yaml
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      path: infrastructure/metallb/
+
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: true     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
