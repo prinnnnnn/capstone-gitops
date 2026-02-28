@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openstack
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: openstack
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+
+  sources:
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      path: infrastructure/openstack
+
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: true     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: public-openstack
+  namespace: openstack
+spec:
+  externalTrafficPolicy: Cluster
+  type: LoadBalancer
+  selector:
+    app: ingress-api
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
