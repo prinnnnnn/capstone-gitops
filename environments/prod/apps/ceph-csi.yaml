@@ -1,35 +1,35 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: ceph-csi-rbd
-#   namespace: argocd
-#   labels:
-#     app.kubernetes.io/name: ceph-csi-rbd
-#     app.kubernetes.io/part-of: platform
-# spec:
-#   project: default
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ceph-csi-rbd
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: ceph-csi-rbd
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
 
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: ceph-csi-rbd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ceph-csi-rbd
 
-#   sources:
+  sources:
 
-#     - repoURL: https://ceph.github.io/csi-charts
-#       chart: ceph-csi-rbd
-#       targetRevision: 3.15.0 
-#       helm:
-#         valueFiles:
-#           - $values/helm-values/ceph-csi-rbd/values.yaml
+    - repoURL: https://ceph.github.io/csi-charts
+      chart: ceph-csi-rbd
+      targetRevision: 3.15.0 
+      helm:
+        valueFiles:
+          - $values/helm-values/ceph-csi-rbd/values.yaml
 
-#     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
-#       targetRevision: main
-#       ref: values
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
 
-#   syncPolicy:
-#     automated:
-#       prune: true      
-#       selfHeal: true     
-#     syncOptions:
-#       - CreateNamespace=true
-#       - ApplyOutOfSyncOnly=true
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: true     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
