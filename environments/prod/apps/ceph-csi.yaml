@@ -17,7 +17,7 @@ spec:
 
     - repoURL: https://ceph.github.io/csi-charts
       chart: ceph-csi-rbd
-      targetRevision: 3.10.0 
+      targetRevision: 3.15.0 
       helm:
         valueFiles:
           - $values/helm-values/ceph-csi-rbd/values.yaml
