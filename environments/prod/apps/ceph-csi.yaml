@@ -16,7 +16,7 @@ spec:
   sources:
 
     - repoURL: https://ceph.github.io/csi-charts
-      chart: ceph-csi/ceph-csi-rbd
+      chart: ceph-csi-rbd
       targetRevision: 3.10.0 
       helm:
         valueFiles:
