@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+
+  sources:
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      path: infrastructure/argocd
+
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: true     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
