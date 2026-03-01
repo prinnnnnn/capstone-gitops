@@ -13,11 +13,11 @@ spec:
     port: 80
     targetPort: 8080
     protocol: TCP
-    nodePort: 30080  # Accessible on http://<node-ip>:30080
+    nodePort: 30080
   - name: https
     port: 443
     targetPort: 8080
     protocol: TCP
-    nodePort: 30443  # Accessible on https://<node-ip>:30443
+    nodePort: 30443
   selector:
     app.kubernetes.io/name: argocd-server

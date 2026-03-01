@@ -83,8 +83,8 @@ prometheus:
         cpu: 1
         memory: 2Gi
 
-    nodeSelector:
-      monitoring: enabled
+    # nodeSelector:
+    #   monitoring: enabled
 
     tolerations: []
 
