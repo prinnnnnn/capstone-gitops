@@ -3,8 +3,8 @@ global:
     create: true
 
 grafana:
- # nodeSelector:
-  #  node-role: control-plane
+  nodeSelector:
+    monitoring: enabled
   enabled: true
 
   adminUser: admin
@@ -83,8 +83,8 @@ prometheus:
         cpu: 1
         memory: 2Gi
 
-    # nodeSelector:
-    #   node-role: control-plane
+    nodeSelector:
+      monitoring: enabled
 
     tolerations: []
 
@@ -93,7 +93,7 @@ alertmanager:
 
   alertmanagerSpec:
     nodeSelector:
-      node-role: control-plane
+      monitoring: enabled
     replicas: 1
     storage:
       volumeClaimTemplate:
@@ -114,7 +114,7 @@ alertmanager:
 
 kubeStateMetrics:
   nodeSelector:
-    node-role: control-plane
+    monitoring: enabled
   enabled: true
 
   resources:
@@ -127,7 +127,7 @@ kubeStateMetrics:
 
 nodeExporter:
   nodeSelector:
-    node-role: control-plane
+    monitoring: enabled
   enabled: true
 
   resources:

@@ -12,4 +12,4 @@ persistence:
   storageClassName: local-path
 
 nodeSelector:
-  node-role: control-plane
+  monitoring: enabled
