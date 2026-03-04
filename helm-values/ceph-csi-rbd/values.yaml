@@ -13,9 +13,9 @@ serviceAccounts:
 csiConfig:
   - clusterID: "12e4ef0c-097b-11f1-963b-10ddb1d15aee"
     monitors:
-      - "10.0.0.30:6789"
-      - "10.0.0.122:6789"
-      - "10.0.0.146:6789"
+      - "10.0.0.30:3300"
+      - "10.0.0.122:3300"
+      - "10.0.0.146:3300"
     rbd:
       netNamespaceFilePath: "{{ .kubeletDir }}/plugins/{{ .driverName }}/net"
       mirrorDaemonCount: 1
