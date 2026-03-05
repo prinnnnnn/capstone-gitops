@@ -15,9 +15,9 @@ spec:
       targetRevision: main
       path: environments/prod/namespaces 
     
-    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
-      targetRevision: main
-      path: environments/prod/openstack 
+    # - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+    #   targetRevision: main
+    #   path: environments/prod/openstack 
 
   destination:
     server: https://kubernetes.default.svc

@@ -18,6 +18,7 @@ spec:
       helm:
         valueFiles:
           - $values/helm-values/rabbitmq/values.yaml
+
     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
       targetRevision: main
       ref: values
