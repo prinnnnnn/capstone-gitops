@@ -43,3 +43,6 @@ readAffinity:
   crushLocationLabels:
     - topology.kubernetes.io/region
     - topology.kubernetes.io/zone
+
+kubeletDir: /var/lib/kubelet
+driverName: rbd.csi.ceph.com
