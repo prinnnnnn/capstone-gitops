@@ -1,0 +1,10 @@
+images:
+  tags:
+    prometheus_rabbitmq_exporter_helm_tests: quay.io/airshipit/heat:2025.1-ubuntu_noble
+    rabbitmq_init: quay.io/airshipit/heat:2025.1-ubuntu_noble
+
+volume:
+  chown_on_start: true
+  enabled: true
+  class_name: general
+  size: 768Mi

@@ -9,7 +9,7 @@ singleBinary:
 persistence:
   enabled: true
   size: 10Gi
-  storageClassName: local-path
+  storageClassName: ceph-monitoring
 
 nodeSelector:
   monitoring: enabled
