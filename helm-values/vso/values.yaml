@@ -1,7 +1,7 @@
 defaultVaultConnection:
   enabled: true
   address: "https://10.0.0.52:8200"
-  caCertSecretRef: "vault-ca-cert"
+  caCertSecret: "vault-ca-cert"
   skipTLSVerify: false
 
 controller:
