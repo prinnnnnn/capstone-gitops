@@ -100,7 +100,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: ceph-monitoring
+          storageClassName: local-path
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
