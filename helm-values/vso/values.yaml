@@ -1,0 +1,27 @@
+defaultVaultConnection:
+  enabled: true
+  address: "https://10.0.0.52:8200"
+  caCertSecretRef: "vault-ca-cert"
+  skipTLSVerify: false
+
+controller:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+  manager:
+    clientCache:
+      persistenceModel: direct-encrypted
+      storageEncryption:
+        enabled: false
+
+metricsAddr: "0.0.0.0:8080"
+
+telemetry:
+  serviceMonitor:
+    enabled: false

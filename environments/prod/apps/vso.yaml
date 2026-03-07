@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault-secrets-operator
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: vault-secrets-operator
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault-secrets-operator
+
+  sources:
+
+    - repoURL: https://helm.releases.hashicorp.com
+      chart: vault-secrets-operator
+      targetRevision: 1.0.0
+      helm:
+        valueFiles:
+          - $values/helm-values/vso/values.yaml
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: true     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
