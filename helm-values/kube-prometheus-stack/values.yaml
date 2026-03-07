@@ -7,8 +7,10 @@ grafana:
     monitoring: enabled
   enabled: true
 
-  adminUser: admin
-  adminPassword: "ChangeMeStrongPassword123"
+  admin:
+    existingSecret: "grafana-secret"
+    userKey: admin-user
+    passwordKey: admin-password
 
   service:
     type: ClusterIP
@@ -89,7 +91,7 @@ prometheus:
     tolerations: []
 
 alertmanager:
-  enabled: false
+  enabled: true
 
   alertmanagerSpec:
     nodeSelector:
@@ -98,7 +100,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-path
+          storageClassName: ceph-monitoring
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
