@@ -25,6 +25,10 @@ spec:
     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
       targetRevision: main
       ref: values
+    
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      path: infrastructure/vso/
 
   syncPolicy:
     automated:

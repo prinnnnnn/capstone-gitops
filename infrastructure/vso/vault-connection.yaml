@@ -1,0 +1,9 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: vault-connection
+  namespace: vault-secrets-operator
+spec:
+  address: https://10.0.0.52:8200
+  caCertSecretRef: vault-ca-cert
+  skipTLSVerify: false
