@@ -1,0 +1,14 @@
+images:
+  tags:
+    prometheus_mysql_exporter_helm_tests: quay.io/airshipit/heat:2025.1-ubuntu_noble
+    ks_user: quay.io/airshipit/heat:2025.1-ubuntu_noble
+
+volume:
+  chown_on_start: true
+  enabled: true
+  class_name: general
+  size: 20Gi
+  backup:
+    enabled: true
+    class_name: general
+    size: 20Gi

@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mariadb
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: mariadb
+    app.kubernetes.io/part-of: openstack
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openstack
+  sources:
+    - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
+      chart: mariadb
+      targetRevision: 2025.1.1+0cd784591
+      helm:
+        valueFiles:
+          - $values/helm-values/mariadb/values.yaml
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
