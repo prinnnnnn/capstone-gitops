@@ -16,9 +16,9 @@ csiConfig:
       - "10.0.0.30:3300"
       - "10.0.0.122:3300"
       - "10.0.0.146:3300"
-    rbd:
-      netNamespaceFilePath: "/var/lib/kubelet/plugins/rbd.csi.ceph.com/net"
-      mirrorDaemonCount: 1
+    # rbd:
+    #   netNamespaceFilePath: "/var/lib/kubelet/plugins/rbd.csi.ceph.com/net"
+    #   mirrorDaemonCount: 1
     readAffinity:
       enabled: true
       crushLocationLabels:
