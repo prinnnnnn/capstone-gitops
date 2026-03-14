@@ -16,7 +16,7 @@ grafana:
     type: ClusterIP
 
   ingress:
-    enabled: true
+    enabled: false
     ingressClassName: nginx
     paths:
       - /
@@ -38,14 +38,12 @@ grafana:
 
   additionalDataSources: []
 
-  # Create read-only user
   grafana.ini:
     users:
       allow_sign_up: false
     auth.anonymous:
       enabled: false
 
-  # Create additional user via provisioning
   dashboardProviders:
     dashboardproviders.yaml:
       apiVersion: 1
@@ -54,6 +52,16 @@ grafana:
   sidecar:
     dashboards:
       enabled: true
+
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: "ceph-monitoring"
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
 
   extraConfigmapMounts:
     - name: grafana-provisioning
@@ -71,11 +79,11 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-path
+          storageClassName: ceph-monitoring
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 50Gi
+              storage: 30Gi
 
     resources:
       requests:
@@ -85,8 +93,8 @@ prometheus:
         cpu: 1
         memory: 2Gi
 
-    # nodeSelector:
-    #   monitoring: enabled
+    nodeSelector:
+      monitoring: enabled
 
     tolerations: []
 
@@ -100,7 +108,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: local-path
+          storageClassName: ceph-monitoring
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
