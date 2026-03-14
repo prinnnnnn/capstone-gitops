@@ -6,7 +6,7 @@ conf:
 
 pod:
   replicas:
-    server: 3
+    server: 1
   resources:
     enabled: true
     memcached:
