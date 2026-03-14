@@ -1,9 +1,5 @@
 loki:
   loki:
-    image:
-      registry: docker.io
-      repository: grafana/loki
-      tag: 3.0.0
     storage:
       type: filesystem
 
@@ -29,6 +25,11 @@ loki:
     compactor:
       working_directory: /var/loki/compactor
       shared_store: filesystem
+  
+  image:
+    registry: docker.io
+    repository: grafana/loki
+    tag: 3.0.0
 
   storage_config:
     aws: null
