@@ -100,6 +100,14 @@ prometheus:
 
 alertmanager:
   enabled: true
+  config:
+    route:
+      receiver: 'discord'
+    receivers:
+      - name: 'discord'
+        webhook_configs:
+          - url: http://alertmanager-discord.monitoring.svc.cluster.local:9094
+            send_resolved: true'
 
   alertmanagerSpec:
     nodeSelector:
