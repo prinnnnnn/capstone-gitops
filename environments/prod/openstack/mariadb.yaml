@@ -14,7 +14,7 @@ spec:
   sources:
     - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
       chart: mariadb
-      targetRevision: 2025.1.1+0cd784591
+      targetRevision: 2025.1.2+5f606280f
       helm:
         valueFiles:
           - $values/helm-values/mariadb/values.yaml
