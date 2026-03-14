@@ -1,32 +1,32 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: rabbitmq
-#   namespace: argocd
-#   labels:
-#     app.kubernetes.io/name: rabbitmq
-#     app.kubernetes.io/part-of: openstack
-# spec:
-#   project: default
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: openstack
-#   sources:
-#     - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
-#       chart: rabbitmq
-#       targetRevision: 2025.1.1+0cd784591
-#       helm:
-#         valueFiles:
-#           - $values/helm-values/rabbitmq/values.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: memcached
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: memcached
+    app.kubernetes.io/part-of: openstack
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openstack
+  sources:
+    - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
+      chart: memcached
+      targetRevision: 2025.1.0+9be383505
+      helm:
+        valueFiles:
+          - $values/helm-values/memcached/values.yaml
 
-#     - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
-#       targetRevision: main
-#       ref: values
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
-#       - ApplyOutOfSyncOnly=true
-#       - ServerSideApply=true
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true

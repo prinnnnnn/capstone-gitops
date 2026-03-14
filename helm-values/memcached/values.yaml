@@ -1,0 +1,18 @@
+conf:
+  memcached:
+    memory: 1024
+    stats_cachedump:
+      enabled: true
+
+pod:
+  replicas:
+    server: 3
+  resources:
+    enabled: true
+    memcached:
+      limits:
+        cpu: "2000m"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "128Mi"
