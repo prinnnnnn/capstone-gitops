@@ -14,3 +14,9 @@ singleBinary:
 
   nodeSelector:
     monitoring: enabled
+
+gateway:
+  enabled: true
+  replicas: 2
+  nodeSelector:
+    monitoring: enabled
