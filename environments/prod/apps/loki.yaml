@@ -13,8 +13,8 @@ spec:
     namespace: monitoring
   sources:
     - repoURL: https://grafana.github.io/helm-charts
-      chart: loki-stack
-      targetRevision: 2.10.0
+      chart: loki
+      targetRevision: 5.47.0
       helm:
         valueFiles:
           - $values/helm-values/loki/values.yaml
@@ -24,7 +24,7 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: false
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
