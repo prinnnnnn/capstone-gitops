@@ -36,7 +36,9 @@ loki:
     boltdb_shipper:
       active_index_directory: /var/loki/index
       cache_location: /var/loki/index_cache
-      shared_store: filesystem
+    tsdb_shipper:
+      active_index_directory: /var/loki/tsdb-index
+      cache_location: /var/loki/tsdb-cache
     filesystem:
       directory: /var/loki/chunks
 
@@ -49,6 +51,9 @@ loki:
 
 promtail:
   enabled: true
+  config:
+    clients:
+      - url: http://loki:3100/loki/api/v1/push
 
 grafana:
   enabled: false
