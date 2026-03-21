@@ -17,3 +17,31 @@ volume:
   size: 30Gi
   accessModes:
     - ReadWriteOnce
+
+dependencies:
+  static:
+    api:
+      jobs:
+        - glance-storage-init
+        - glance-db-sync
+        - glance-rabbit-init
+        - glance-ks-service
+        - glance-ks-user
+        - glance-ks-endpoints
+      services:
+        - endpoint: internal
+          service: oslo_db
+        - endpoint: internal
+          service: identity
+        - endpoint: internal
+          service: oslo_messaging
+    ks_user:
+      jobs: null
+      services:
+        - endpoint: internal
+          service: identity
+    ks_service:
+      jobs: null
+      services:
+        - endpoint: internal
+          service: identity
