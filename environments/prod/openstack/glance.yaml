@@ -17,7 +17,7 @@ spec:
 
     - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
       chart: glance
-      targetRevision: 2025.1.1+3334b7425 
+      targetRevision: 2025.2.0+f6be959ce
       helm:
         valueFiles:
           - $values/helm-values/glance/values.yaml
