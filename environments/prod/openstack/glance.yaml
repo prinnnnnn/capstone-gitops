@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: glance
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: glance
+    app.kubernetes.io/part-of: platform
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openstack
+
+  sources:
+
+    - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
+      chart: glance
+      targetRevision: 2025.1.1+3334b7425 
+      helm:
+        valueFiles:
+          - $values/helm-values/glance/values.yaml
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+
+  syncPolicy:
+    automated:
+      prune: true      
+      selfHeal: false     
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
