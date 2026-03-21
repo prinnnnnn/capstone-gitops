@@ -1,0 +1,33 @@
+# openstack-helm/keystone 2025.1.1+2c187ac47
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keystone
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: keystone
+    app.kubernetes.io/part-of: openstack
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openstack
+  sources:
+    - repoURL: https://tarballs.opendev.org/openstack/openstack-helm
+      chart: keystone
+      targetRevision: 2025.1.1+2c187ac47
+      helm:
+        valueFiles:
+          - $values/helm-values/keystone/values.yaml
+
+    - repoURL: https://github.com/prinnnnnn/capstone-gitops.git
+      targetRevision: main
+      ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
